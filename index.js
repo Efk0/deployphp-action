@@ -23,6 +23,7 @@ async function ssh() {
   core.exportVariable('SSH_AUTH_SOCK', authSock)
 
   let privateKey = core.getInput('private-key')
+  core.debug("PK" + privateKey)
   if (privateKey !== '') {
     privateKey = privateKey.replace('/\r/g', '').trim() + '\n'
     execa.sync('ssh-add', ['-'], {input: privateKey})
